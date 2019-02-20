@@ -1,0 +1,180 @@
+Object:
+1. Methods:
+	const robot = {
+	  energyLevel: 100,
+	  checkEnergy(){
+	    console.log(`Energy is currently at ${this.energyLevel}%.`);
+	  },
+	  checkEnergy2: () => {
+	    console.log(`Energy is currently at ${this.energyLevel}%`);
+	  },
+	  checkEnergy3: function() {
+	    console.log(`Energy is currently at ${tihs.energyLevel}%`);
+	  }
+	}
+	robot.checkEnergy(); //Energy is currently at 100%.
+	robot.checkEnergy2(); //Energy is currently at undefined%
+	robot.checkEnergy3(); //ReferenceError: tihs is not defined
+
+2. Privacy: place an underscore _ before the name of a property to mean that the property should not be altered. 
+	(1) Getter: key word: get (Getters are methods that get and return the internal properties of an object.)
+	const robot = {
+		  _model: '1E78V2',
+		  _energyLevel: 100,
+		  get energyLevel() {
+		    if (typeof this._energyLevel === "number"){
+		      return `My current energy level is ${this._energyLevel}`;
+		    } else{
+		      return 'System malfunction: cannot retrieve energy level';
+		    }
+		  },
+		  test() {
+		    if (typeof this._energyLevel === "number"){
+		      return `My current energy level is ${this._energyLevel}`;
+		    } else{
+		      return 'System malfunction: cannot retrieve energy level';
+		  }
+		}
+	};
+	console.log(robot.energyLevel); // My current energy level is 100
+	console.log(robot.test()); // My current energy level is 100
+	(2)Setter
+	const robot = {
+	  _model: '1E78V2',
+	  _energyLevel: 100,
+	  _numOfSensors: 15,
+	  get numOfSensors(){
+	    if(typeof this._numOfSensors === 'number'){
+	      return this._numOfSensors;
+	    } else {
+	      return 'Sensors are currently down.'
+	    }
+	  }, 
+	  set numOfSensors(num){
+	    if (typeof num === "number" && num >= 0){
+	      this._numOfSensors = num;
+	    } else{
+	      console.log('Pass in a number that is greater than or equal to 0');
+	    }
+	  }
+	};
+robot.numOfSensors = 100;
+console.log(robot.numOfSensors);//100
+console.log(robot._numOfSensors);//100
+
+3. Factory
+	const robotFactory = (model, mobile) =>{
+	  return {
+	    model: model,
+	    mobile: mobile,
+	    beep (){
+	      console.log("Beep Boop");
+	    }
+	  }
+	}
+
+	const tinCan = robotFactory("P-500", true);
+	tinCan.beep(this.model); #P-500
+
+	const robot = {
+		  model: '1E78V2',
+		  energyLevel: 100,
+		  functionality: {
+		    beep() {
+		      console.log('Beep Boop');
+		    },
+		    fireLaser() {
+		      console.log('Pew Pew');
+		    },
+		  }
+		};
+
+		const {functionality} = robot; //deconstruct
+		functionality.beep();
+
+4. Library:
+	const robot = {
+		model: 'SAL-1000',
+	  mobile: true,
+	  sentient: false,
+	  armor: 'Steel-plated',
+	  energyLevel: 75
+	};
+
+	const robotKeys = Object.keys(robot);
+	console.log(robotKeys); //[ 'model', 'mobile', 'sentient', 'armor', 'energyLevel' ]
+
+	const robotEntries = Object.entries(robot);
+	console.log(robotEntries); //[ [ 'model', 'SAL-1000' ], [ 'mobile', true ], [ 'sentient', false ], [ 'armor', 'Steel-plated' ], [ 'energyLevel', 75 ] ]
+
+	const newRobot = Object.assign({laserBlaster: true, voiceRecognition: true}, robot)
+	console.log(newRobot); //{ laserBlaster: true, voiceRecognition: true, model: 'SAL-1000', mobile: true, sentient: false,armor: 'Steel-plated', energyLevel: 75 }
+
+5. Loop:
+	const car = {
+	  numDoors: 4,
+	  isDirty: true,
+	  color: 'red'
+	}
+
+	for (let key in car) {
+	  console.log(key)
+	}
+
+	numDoors
+	isDirty
+	color
+
+
+
+Class
+1. constructor(): JavaScript will invoke the constructor() method every time we create a new instance of class
+2. new: keyword to generate a new instance of the class. The new keyword calls the constructor(), runs the code inside of it, and then returns the new instance.
+3. Inheritance: The extends keyword makes the methods of the animal class available inside the cat class.  When you use the extends keyword to declare a method, you automatically inherit the getters, setters, and methods. However, you must call super from within the constructor() to set a parent's properties.
+4. super: The super keyword calls the constructor of the parent class.the super keyword must be called before this is used.
+4. static:class to have methods that aren't available in individual instances, but that you can call directly from the class.
+
+class HospitalEmployee {
+  constructor(name) {
+    this._name = name;
+    this._remainingVacationDays = 20;
+  }
+  
+  get name() {
+    return this._name;
+  }
+  
+  get remainingVacationDays() {
+    return this._remainingVacationDays;
+  }
+  
+  takeVacationDays(daysOff) {
+    this._remainingVacationDays -= daysOff;
+  }
+   // static: class to have methods that aren't available in individual instances, but that you can call directly from the class.
+  static generatePassword(){           
+    return Math.floor(Math.random() * 10000);
+  }
+}
+
+//Inherience
+class Nurse extends HospitalEmployee {
+  constructor(name, certifications) {
+    super(name);
+    this._certifications = certifications;
+  } 
+  
+  get certifications() {
+    return this._certifications;
+  }
+  
+  addCertification(newCertification) {
+    this.certifications.push(newCertification);
+  }
+}
+
+const nurseOlynyk = new Nurse('Olynyk', ['Trauma','Pediatrics']);
+nurseOlynyk.takeVacationDays(5);
+console.log(nurseOlynyk.remainingVacationDays);
+nurseOlynyk.addCertification('Genetics');
+console.log(nurseOlynyk.certifications);

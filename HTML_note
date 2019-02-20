@@ -1,0 +1,121 @@
+1. HTML Structure: HTML is organized as a collection of family tree relationships. 
+		The relationship between elements and their ancestor and descendent elements is known as hierarchy;
+		Child elements can inherit behavior and styling from their parent element
+
+2. Headings: Used to describe content, like the title of a movie or an educational article.
+
+3. Attributes:
+   (1) id: We can use the id attribute to specify different content (such as <div>s) and is really helpful when you use an element more than once;
+   (2) <p>: Paragraphs(<p>) contain a block of plain text;
+   (3) <span>: Span(<span>) contains short pieces of text or other HTML;
+   (4) <em>: emphasize, <strong>: highlight;
+   (5) <br>: line break, modifying the spacing in the browser;
+   (6) <ul>: unordered list to create a list of items in no particular order;
+   	   <li>: list item is used to describe an item in a list.
+   	   eg: 
+   	   	<ul>
+      		<li>Arctos</li>
+      		<li>Collarus</li>
+      		<li>Horribilis</li>
+     		<li>Nelsoni (extinct)</li>
+    	</ul>
+   (7) <ol>: Ordered lists (<ol>) are like unordered lists, except that each list item is numbered. 
+   (8) <img>: allows you to add an image to a web page.
+   	   eg: <img src="image-location.jpg" />
+   	   <alt>: alternative text, brings meaning to the images on our sites
+   	(9)<video>: HTML also supports displaying videos
+   	   eg: <video src="myVideo.mp4" width="320" height="240" controls>
+  				Video not supported
+		   </video>
+		   The controls attribute instructs the browser to include basic video controls: pause, play and skip.
+		   The text, "Video not supported", between the opening and closing video tags will only be displayed if the browser is unable to load the video.
+    (10) Difference between <section> and <div>:
+        <section>: The <section> element represents a generic section of a document or application. A  section, in this context, is a thematic grouping of content. Each section should be identified, typically by including a heading (h1-h6 element) as a child of the <section> element.
+         <div>: The <div> element has no special meaning at all. It represents its children. It can be used with the class, lang, and title attributes to mark up semantics common to a group of consecutive elements.
+
+4. <!DOCTYPE html>: The browser will correctly assume that the html in <!DOCTYPE html> is referring to HTML5, as it is the current standard.
+  (1) <head>: The <head> element contains the metadata for a web page. Metadata is information about the page that isn't displayed directly on the web page. 
+  (2) <title>: A browser's tab displays the title specified in the <title> tag.
+  (3) <a>: including the text of the link in between the opening and closing tags.
+      The href attribute stands for hyperlink reference and is used to link to a path.
+      The target attribute specifies how a link should open.
+      Link to text: eg: <a href="https://en.wikipedia.org/wiki/Brown_bear" target="_blank">The Brown Bear</a>
+      Link to image: eg: <a href="https://en.wikipedia.org/wiki/Opuntia" target="_blank"><img src="#" alt="A red prickly pear fruit"/></a>
+  (4) Linking to Same Page:
+      eg: <p id="top">This is the top of the page!</p>
+          <h1 id="bottom">This is the bottom! </h1>
+
+          <ol>
+            <li><a href="#top">Top</a></li>
+            <li><a href="#bottom">Bottom</a></li>
+          </ol>
+
+5. Comments: <!-- <p> Test Code </p> -->
+
+6. Table:
+  (1) <table>: Before displaying data, you must first create the table that will contain the data
+  (2) <tr>: Enter Add rows 
+  (3) <td>: Add data using table data element
+   colspan: The attributes accepts an integer (greater than or equal to 1) to denote the number of columns  it spans across.
+   rowspan: The attribute is used for data that spans multiple rows 
+          eg:<td colspan="2">Out of Town</td>
+  (4) <th>: Add table heading
+            The use of the scope attribute, which can take one of two values:
+                row - this value makes it clear that the heading is for a row.
+                col - this value makes it clear that the heading is for a column.
+  (5) <thead>: Section off the head.
+      <tbody>: Section off the body.
+      <tfoot>: Section off the bottom.
+
+7. Form: The <form> element is a great tool for collecting information. We need to supply the <form> element with both the location of where the <form>'s information goes and what HTTP request to make
+   eg: <form action="/example.html" method="POST"></form>
+   action: The attribute determines where the information is sent;
+   method: The attribute is assigned a HTTP verb that is included in the HTTP request. 
+   (1) Text Input:
+          Type: The type attribute which determines how it renders on the web page and what kind of data it can accept.
+          Name: Without the name attribute, information in the <input> won't be sent when the <form> is submitted
+          Value: The value of the value attribute becomes what is typed into the text field.The value of the value attribute is paired with the value of the name attribute and sent as text when the form is submitted.
+          Step: We can also provide a step attribute which creates arrows inside the input field to increase or decrease by the value of the step attribute.
+          Max and Min: To set the minimum and maximum values of the slider we assign values to the min and max attribute of the <input>
+          eg: <input type="text" name="first-text-field" value="value">
+   (2) Label:
+          The <label> displays text that is written between the opening and closing tags. To associate a <label> and an <input>, the <input> needs an id attribute. We then assign the for attribute of the <label> element with the value of the id attribute of <input>
+          eg:
+              <form action="/example.html" method="POST">
+                <label for="meal">What do you want to eat?</label>
+                <input type="text" name="food" id="meal">
+              </form>
+    (3) Select: Dropdown list to allow our users to choose one option from an organized list.
+          <select id="bun" name="bun">
+            <option value="sesame">Sesame</option>
+            <option value="potato">Potato</option>
+          </select>
+    (4) Checkbox: Multiple options to users and allow them to select any number of optionsthere are assigned values to the value attribute of the checkboxes. These values are not visible on the form itself, that's why it is important that we use an associated <label> to identify the checkbox.
+        eg:<input id="pepperoni" name="topping" type="checkbox" value="pepperoni">
+    Radio:Checkboxes work well if we want to present users with multiple options and let them choose one or more of the options.
+        eg:<form>
+              <p>What is sum of 1 + 1?</p>
+              <input type="radio" id="two" name="answer" value="2">
+              <label for="two">2</label>
+              <br>
+              <input type="radio" id="eleven" name="answer" value="11">
+              <label for="eleven">11</label>
+            </form>
+    (5) Datalist: The <datalist> is used with an <input type="text"> element. The <input> creates a text field that users can type into and filter options from the <datalist>. 
+            <section class="sauce-selection">
+                <label for="sauce">What type of sauce would you like?</label>
+                <input list="sauces" id="sauce" name="sauce">
+                  <datalist id="sauces">
+                    <option value="ketchup"></option>
+                    <option value="mayo"></option>
+                    <option value="mustard"></option>
+                  </datalist>
+            </section>
+    (6)Textarea: The <textarea> element is used to create a bigger text field for users to write more text.
+            eg:  <textarea id="extra" name="extra" rows="3" cols="40">No plastic utensils please!</textarea>
+    (7)Submit Form: <input> element and set the type to "submit"
+            eg: <form>
+                    <input type="submit" value="Send">
+                </form>
+
+

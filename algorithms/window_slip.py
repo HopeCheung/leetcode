@@ -7,7 +7,7 @@ def window_slip(array, k):
 		max_sum = max_sum + array[i]
 
 	window_sum = max_sum
-	for j in range(k, length - k):
+	for j in range(k, length):
 		window_sum = window_sum + array[j] - array[j-k]
 		max_sum = max(window_sum, max_sum)
 	return max_sum
